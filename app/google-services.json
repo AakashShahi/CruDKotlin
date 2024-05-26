@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "610902871498",
+    "project_id": "crudkotlin-6b2fb",
+    "storage_bucket": "crudkotlin-6b2fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610902871498:android:80c8140edfe71e5e3d9333",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiCRwKLQHgY_1h8Uf_xO6rxnvehxJGmbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
