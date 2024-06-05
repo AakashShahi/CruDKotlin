@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class MainActivity(dragDirs: Int) : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     lateinit var mainBinding: ActivityMainBinding
     var firebaseDatabase: FirebaseDatabase= FirebaseDatabase.getInstance()
     var ref: DatabaseReference= firebaseDatabase.reference.child("products")
@@ -44,6 +44,7 @@ class MainActivity(dragDirs: Int) : AppCompatActivity() {
                         Log.d("my data",product.name)
                         Log.d("my data",product.price)
                         Log.d("my data",product.desc)
+                        productList.add(product)
                     }
                     mainBinding.recyclerView.adapter = productAdapter
                     mainBinding.recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
@@ -61,7 +62,7 @@ class MainActivity(dragDirs: Int) : AppCompatActivity() {
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                TODO("Not yet implemented")
+                return false
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
