@@ -8,9 +8,11 @@ data class ProductModel(
     var name: String="",
     var price: String="",
     var desc: String="",
-    var url: String=""
+    var url: String="",
+    var imageName: String=""
 ):Parcelable{
     constructor(parcel: Parcel) : this(
+        parcel.readString()?:"",
         parcel.readString()?:"",
         parcel.readString()?:"",
         parcel.readString()?:"",
@@ -24,6 +26,8 @@ data class ProductModel(
         parcel.writeString(name)
         parcel.writeString(price)
         parcel.writeString(desc)
+        parcel.writeString(url)
+        parcel.writeString(imageName)
 
     }
 

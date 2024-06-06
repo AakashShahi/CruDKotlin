@@ -80,13 +80,13 @@ class MainActivity2 : AppCompatActivity() {
 
     }
 
-    private fun addProducts(url: String) {
+    private fun addProducts(url: String,imageName: String) {
         var name: String = addProductBinding.editTextText2.text.toString()
         var price: String = addProductBinding.editTextText3.text.toString()
         var description: String = addProductBinding.editTextText4.text.toString()
 
         var id = ref.push().key.toString()
-        var data = ProductModel(id, name, price, description, url)
+        var data = ProductModel(id, name, price, description, url,imageName)
         ref.child(id).setValue(data).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(applicationContext, "Data Saved", Toast.LENGTH_LONG).show()
@@ -123,7 +123,7 @@ class MainActivity2 : AppCompatActivity() {
 
                 imageReference.downloadUrl.addOnSuccessListener { url ->
                     var imageUrl = url.toString()
-                    addProducts(imageUrl)
+                    addProducts(imageUrl,imageName)
                 }
             }.addOnFailureListener {
                 Toast.makeText(applicationContext, it.localizedMessage, Toast.LENGTH_LONG).show()

@@ -9,6 +9,12 @@
     android:orientation="vertical">
 
 
+    <ImageView
+        android:id="@+id/updtImg"
+        android:layout_width="match_parent"
+        android:layout_height="166dp"
+        android:src="@drawable/updatelogo" />
+
     <EditText
         android:id="@+id/editTextText22"
         android:layout_width="match_parent"
