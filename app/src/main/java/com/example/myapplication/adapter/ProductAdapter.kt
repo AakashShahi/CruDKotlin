@@ -10,8 +10,9 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.UpdateActivity
+import com.example.myapplication.ui.activity.UpdateActivity
 import com.example.myapplication.model.ProductModel
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
@@ -41,7 +42,7 @@ class ProductAdapter(var context: Context, var data: ArrayList<ProductModel>):Re
         holder.description.text = data[position].desc
 
         var imageURL=data[position].url
-        Picasso.get().load(imageURL).into(holder.imageView,object: com.squareup.picasso.Callback {
+        Picasso.get().load(imageURL).into(holder.imageView,object: Callback {
             override fun onSuccess() {
                 holder.progressBar.visibility = View.GONE
             }
@@ -62,5 +63,9 @@ class ProductAdapter(var context: Context, var data: ArrayList<ProductModel>):Re
     }
     fun getProductId(position:Int):String {
         return data[position].id
+    }
+
+    fun getImageName(position: Int): String{
+        return data[position].imageName
     }
 }

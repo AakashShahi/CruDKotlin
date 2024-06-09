@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "610902871498",
-    "project_id": "crudkotlin-6b2fb",
-    "storage_bucket": "crudkotlin-6b2fb.appspot.com"
+    "project_number": "877942429341",
+    "firebase_url": "https://crud-class-b25fd-default-rtdb.firebaseio.com",
+    "project_id": "crud-class-b25fd",
+    "storage_bucket": "crud-class-b25fd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:610902871498:android:80c8140edfe71e5e3d9333",
+        "mobilesdk_app_id": "1:877942429341:android:d2871d0c5dbd11a39ee674",
         "android_client_info": {
           "package_name": "com.example.myapplication"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAiCRwKLQHgY_1h8Uf_xO6rxnvehxJGmbo"
+          "current_key": "AIzaSyC0jSeQYhCK4EdTVmj4DSpKddRDBQt2ZZM"
         }
       ],
       "services": {

@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.activity
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -112,7 +112,7 @@ class UpdateActivity : AppCompatActivity() {
         updatedMap["url"]=url
         ref.child(id).updateChildren(updatedMap).addOnCompleteListener {
             if(it.isSuccessful){
-                var intent=Intent(this,MainActivity::class.java)
+                var intent=Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 Toast.makeText(this,"Product Updated", Toast.LENGTH_SHORT).show()
                 finish()

@@ -1,13 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,12 +17,18 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class MainActivity : AppCompatActivity() {
     lateinit var mainBinding: ActivityMainBinding
     var firebaseDatabase: FirebaseDatabase= FirebaseDatabase.getInstance()
     var ref: DatabaseReference= firebaseDatabase.reference.child("products")
+
+    var firebaseStorage: FirebaseStorage = FirebaseStorage.getInstance()
+    var storageReference: StorageReference = firebaseStorage.reference
     var productList=ArrayList<ProductModel>()
+
     lateinit var productAdapter: ProductAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(this@MainActivity,error.message,Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -70,8 +74,13 @@ class MainActivity : AppCompatActivity() {
                     .setPositiveButton("Yes"){
                         dialog,which->
                         var id = productAdapter.getProductId(viewHolder.adapterPosition)
-                        ref.child(id).removeValue()
-                        productAdapter.notifyItemRemoved(viewHolder.adapterPosition)
+                        var imageName=productAdapter.getImageName(viewHolder.adapterPosition)
+                        ref.child(id).removeValue().addOnCompleteListener {
+                            if(it.isSuccessful){
+                                storageReference.child("products").child(imageName).delete()
+                                productAdapter.notifyItemRemoved(viewHolder.adapterPosition)
+                            }
+                        }
                     }
                     .setNegativeButton("No"){
                         dialog,which->
@@ -82,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         }).attachToRecyclerView(mainBinding.recyclerView)
 
         mainBinding.floatingActionButton.setOnClickListener{
-            var intent = Intent(this@MainActivity,MainActivity2::class.java)
+            var intent = Intent(this@MainActivity, MainActivity2::class.java)
             startActivity(intent)
         }
     }

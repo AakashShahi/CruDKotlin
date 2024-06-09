@@ -1,10 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.ui.activity
 
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
@@ -80,15 +81,19 @@ class MainActivity2 : AppCompatActivity() {
 
     }
 
-    private fun addProducts(url: String,imageName: String) {
+     fun addProducts(url: String,imageName: String) {
+        Log.d("errorr","add product function called")
         var name: String = addProductBinding.editTextText2.text.toString()
         var price: String = addProductBinding.editTextText3.text.toString()
         var description: String = addProductBinding.editTextText4.text.toString()
 
         var id = ref.push().key.toString()
         var data = ProductModel(id, name, price, description, url,imageName)
+
+         Log.d("data",data.toString())
         ref.child(id).setValue(data).addOnCompleteListener {
             if (it.isSuccessful) {
+                Log.d("data","DATA ASAVED")
                 Toast.makeText(applicationContext, "Data Saved", Toast.LENGTH_LONG).show()
                 finish()
             } else {
@@ -123,6 +128,7 @@ class MainActivity2 : AppCompatActivity() {
 
                 imageReference.downloadUrl.addOnSuccessListener { url ->
                     var imageUrl = url.toString()
+                    Log.d("errorr","i am inside")
                     addProducts(imageUrl,imageName)
                 }
             }.addOnFailureListener {
